@@ -15,8 +15,6 @@ interface Props {
     iconStyle?: Object,
     /**whether input is editable or not */
     disabled?: boolean,
-    /**applies default styling for valid state */
-    valid?: boolean,
     onChangeText?: (value: string)=> void,
     keyboardType?: KeyboardType,
     secure?: boolean,
@@ -25,7 +23,10 @@ interface Props {
     theme?: any,
     /** fixed value of input */
     value?: any,
-    length?: 4 | 6
+    /**length of inpi=ut field */
+    length: 4 | 6,
+    /** to enable visual display of validity */
+    isValid?: boolean
 }
 
 // const {theme} = CONSTANTS;
@@ -73,6 +74,7 @@ const OtpInput: React.FC<Props> = (props) => {
     }
 
     React.useEffect(()=> {
+        console.log(allValue);
         props.onChangeText ? props.onChangeText(allValue) : null;
         // return ()=> {
         //     setAllValue('')
@@ -80,16 +82,18 @@ const OtpInput: React.FC<Props> = (props) => {
     }, [allValue])
 
     return (
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '100%', alignContent: 'space-between'}}>
+        <View style={{flexDirection: 'row', justifyContent: props.length === 4 ? 'center' : 'space-between', width: '100%', alignContent: 'space-between'}}>
             {inputRefs.map((ref: any, index: number)=> (
                 <Pressable key={index} onPress = {()=> ref.current.focus()} 
-                style={[styles.defaultItemStyle, {borderColor: ref?.current?.isFocused() ? theme.success.main : theme.light.main, backgroundColor: theme.light.main,
-                    borderWidth: ref?.current?.isFocused() ? 2 : 1
+                style={[styles.defaultItemStyle, {borderColor: props.isValid ? theme.primary.main : theme.neutral.main, backgroundColor: theme.light,
+                    borderWidth: 2,
+                    height: props.length === 4 ? scale(50) : scale(40),
+                    width: props.length === 4 ? scale(50) : scale(40),
+                    marginHorizontal: scale(5)
                 }]}>
                     <TextInput showSoftInputOnFocus={false} ref={ref} maxLength={1} onBlur={handleBlur} style={styles.input} editable = {!props.disabled}  keyboardType={props.keyboardType} secureTextEntry = {props.secure} value={props.value[index]} 
                         onChangeText={(text: string)=> {
                             if(text) {
-                                const value = text.length > 0 ? text[1] : text[0] ;
                                 let newVal = allValue;
                                 newVal += text;
                                 setAllValue(newVal);
@@ -130,14 +134,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         borderRadius: scale(8),
         paddingVertical: scale(5),
-        // backgroundColor: 'transparent',
         marginBottom: 20,
-        height: scale(40),
-        width: scale(40),
         alignItems: 'center',
-        // marginRight: scale(15),
-        // alignSelf: "center"
-        // borderColor: theme.light.medium,
     },
     input: {
         height: '100%',

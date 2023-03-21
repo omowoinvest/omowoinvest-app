@@ -111,6 +111,7 @@ export interface EventCardType {
 export interface AlertConfig {
     title?: string;
     message: string;
+    mode?: "success" | "error" | "neutral"
 }
 
 /** declares type for application wide settings/configuratioon */
@@ -124,6 +125,7 @@ export interface AppSettings {
     alert: AlertConfig
     /** determines whether alert is visible */
     alertVisible: boolean;
+    loaderTitle?: string;
 }
 
 /** declares type for side menu item */

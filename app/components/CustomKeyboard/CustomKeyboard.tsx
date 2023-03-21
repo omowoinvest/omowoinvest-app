@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, Pressable } from 'react-native'
+import { View, Text, Pressable, StyleSheet} from 'react-native'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { BoldText, MediumText } from '../Typography/Typography';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { BoldText, MediumText, SemiBoldText } from '../Typography/Typography';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Button } from '../Buttons/Button';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import CONSTANTS from '../../utils/constants';
@@ -40,55 +40,55 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
 
     return (
         // <ActionSheet animated={false} ref={actionSheetRef} backgroundInteractionEnabled closable={false} onOpen={onPresent} containerStyle={{backgroundColor: theme.primary[600], borderTopEndRadius: 0, borderTopStartRadius: 0}}>
-            <View style={{height: DEVICE_HEIGHT / 2, backgroundColor: theme.primary[600], paddingVertical: scale(20), paddingHorizontal: scale(10)}}>
+            <View style={{height: DEVICE_HEIGHT / 2, paddingVertical: scale(20), paddingHorizontal: scale(10)}}>
                 <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("1")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="1" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("1")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="1" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("2")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="2" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("2")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="2" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("3")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="3" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("3")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="3" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                 </View>
                 <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("4")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="4" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("4")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="4" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("5")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="5" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("5")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="5" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("6")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="6" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("6")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="6" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                 </View>
                 <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("7")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="7" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("7")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="7" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("8")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="8" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("8")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="8" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("9")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="9" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("9")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="9" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                 </View>
@@ -99,22 +99,30 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
                         </Pressable> */}
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={()=> onKeyPress("0")} style={{borderRadius: 5}}>
-                            <MediumText size={32} title="0" color={theme.light.main} />
+                        <Pressable onPress={()=> onKeyPress("0")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <SemiBoldText size={32} title="0" color={theme.primary[500]} />
                         </Pressable>
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
-                        <Pressable onPress={onBackSpace}>
-                            <Ionicons name="close-outline" color={theme.light.main} size={50} style={{marginLeft: 10}} />
+                        <Pressable onPress={onBackSpace} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
+                            <MaterialCommunityIcons name="backspace-outline" color={theme.primary.main} size={35} />
                         </Pressable>
                     </View>
-                </View>
-                <View>
-                    <Button color={theme.success[500]} title={buttonTitle ?? ""} textColor={theme.text.main} onPress={onComplete} disabled={disableComplete ?? false} />
                 </View>
             </View>
         // </ActionSheet>
     )
 }
+
+const styles = StyleSheet.create({
+    button: {
+        borderRadius: scale(30), 
+        borderWidth: scale(1.5),
+        alignItems: "center",
+        justifyContent: "center",
+        height: scale(60), 
+        width: scale(60),
+    }
+})
 
 export default CustomKeyboard

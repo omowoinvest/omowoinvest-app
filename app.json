@@ -1,5 +1,6 @@
 {
   "expo": {
+    "owner": "omowo",
     "name": "Omowo",
     "slug": "Omowo",
     "version": "1.0.0",
@@ -15,7 +16,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "mailto",
+          "message",
+          "readdle-spark",
+          "airmail",
+          "ms-outlook",
+          "googlegmail",
+          "inbox-gmail",
+          "ymail",
+          "superhuman",
+          "yandexmail",
+          "fastmail",
+          "protonmail"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,6 +45,17 @@
     },
     "plugins": [
       "react-native-email-link"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "95eead9a-5346-43f3-94f5-c42bcfb61c4e"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/95eead9a-5346-43f3-94f5-c42bcfb61c4e"
+    }
   }
 }

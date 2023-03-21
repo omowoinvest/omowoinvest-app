@@ -10,6 +10,9 @@ import CONSTANTS from '../utils/constants';
 import { StatusBar } from 'expo-status-bar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import scale from '../utils/scale';
+import PinSuccess from '../screens/Auth/CreatePin/PinSuccess';
+import Fingerprint from '../screens/Auth/Biometric/Fingerprint';
 
 const Stack = createStackNavigator();
 const LoggedOutStack = () => {
@@ -20,22 +23,47 @@ const LoggedOutStack = () => {
         <>
         <StatusBar backgroundColor={"#FBFEFF"} translucent={false} />
         <Stack.Navigator initialRouteName = "Onboarding" screenOptions={({ navigation }: any) => ({
-            headerStyle: {
-                backgroundColor: 'white',
-            },
             ...Transition,
-            header: ()=> (null),
+            headerStyle: {
+                backgroundColor: theme.bg,
+            },
             // presentation: 'transparentModal', 
             contentStyle: { backgroundColor: 'white'},
             })}
         >
             {/* available screens for logged out users */}
-            <Stack.Screen name="Onboarding" component={Onboarding as React.FC} />
-            <Stack.Screen name="Login" component={Login as React.FC} />
-            <Stack.Screen name="Register" component={Register as React.FC} />
-            <Stack.Screen name="VerifyOtp" component={Verify as React.FC} />
-            <Stack.Screen name="CreatePin" component={CreatePin as React.FC} />
-            <Stack.Screen name="PinLogin" component={PinLogin as React.FC} />
+            <Stack.Screen name="Onboarding" component={Onboarding as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="Login" component={Login as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="Register" component={Register as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="Verify" component={Verify as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="CreatePin" component={CreatePin as React.FC} options={{
+                headerTitle: "",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="PinSuccess" component={PinSuccess as React.FC} options={{
+                headerTitle: "",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="PinLogin" component={PinLogin as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="Fingerprint" component={Fingerprint as React.FC} options={{
+                header: ()=> (null),
+            }} />
         </Stack.Navigator>
         </>
     )

@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
-import { View, StyleSheet, Image} from 'react-native';
+import React, { FC, useEffect, useState, useRef } from 'react';
+import { View, StyleSheet, Image, Pressable} from 'react-native';
 import Swiper from 'react-native-swiper';
 import { useSelector } from 'react-redux';
 import Button from '../../../components/Buttons/Button';
@@ -8,6 +8,7 @@ import { RegularText, SemiBoldText } from '../../../components/Typography/Typogr
 import { RootState } from '../../../store/store';
 import scale from '../../../utils/scale';
 import {Screen} from "../../../utils/types";
+import * as Animatable from 'react-native-animatable';
 
 
 const Onboarding: FC<Screen> = ({navigation}) => {
@@ -18,11 +19,7 @@ const Onboarding: FC<Screen> = ({navigation}) => {
         title: "Welcome to Omowo", 
         description: "We're here to help you save, and make long term investments for your little ones."
     });
-    const handleIndexChange = (index: number)=> {
-        console.log(index);
-        setCurrentIndex(index);
-    }
-    
+
     useEffect(() => {
         let title;
         switch (currentIndex) {
@@ -64,46 +61,77 @@ const Onboarding: FC<Screen> = ({navigation}) => {
             default:
                 break;
         }
+        
     }, [currentIndex])
+
+    useEffect(() => {
+        const interval = setInterval(()=> {
+            setCurrentIndex((value)=> {
+                // console.log(value);
+                if(value < 4) {
+                    return value + 1
+                }
+                return 0
+            })
+        }, 2000)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
 
     const nav = (route: string)=> {
         navigation.navigate(route);
     }
 
+    const fadeIn = {
+        from: {
+          opacity: 0,
+        },
+        to: {
+          opacity: 1,
+        },
+      };
+
     return (
         <Container>
-            <View style={{flex: 6}}>
-                <Swiper showsButtons={false} 
-                showsPagination={false} loop={false} onIndexChanged={handleIndexChange}>
-                    <View style={styles.slide}>
+            <View style={{flex: 6, flexDirection: "row"}}>
+                {/* <Swiper ref={swipeRef} showsButtons={false} 
+                showsPagination={false} loop onIndexChanged={handleIndexChange} scrollEnabled={false} autoplay> */}
+                {currentIndex === 0 ? (
+                    <Animatable.View animation={fadeIn} duration={1500} style={styles.slide}>
                         <Image source={require('../../../../assets/img/slide1.jpg')} style={styles.slideImg} />
-                    </View>
-                    <View style={styles.slide}>
+                    </Animatable.View>
+                ) : currentIndex === 1 ? (
+                    <Animatable.View animation={"fadeIn"} duration={1500} style={styles.slide}>
                         <Image source={require('../../../../assets/img/slide2.jpg')} style={styles.slideImg} />
-                    </View>
-                    <View style={styles.slide}>
+                    </Animatable.View>
+                ) : currentIndex === 2 ? (
+                    <Animatable.View animation={fadeIn} duration={1500} style={styles.slide}>
                         <Image source={require('../../../../assets/img/slide3.jpg')} style={styles.slideImg} />
-                    </View>
-                    <View style={styles.slide}>
+                    </Animatable.View>
+                ) : currentIndex === 3 ? (
+                    <Animatable.View animation={"fadeIn"} duration={1500} style={styles.slide}>
                         <Image source={require('../../../../assets/img/slide4.jpg')} style={styles.slideImg} />
-                    </View>
-                    <View style={styles.slide}>
+                    </Animatable.View>
+                ) : (
+                    <Animatable.View animation={fadeIn} duration={1500} style={styles.slide}>
                         <Image source={require('../../../../assets/img/slide5.jpg')} style={styles.slideImg} />
-                    </View>
-                </Swiper>
+                    </Animatable.View>
+                )}
+                {/* </Swiper> */}
             </View>
             <View style={{flex: 7}}>
                 <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: scale(10), paddingHorizontal: scale(5)}}>
                     {indicators.map((val: any, index: number)=> (
-                        <View key={index} style={{flex: 1, height: scale(3), marginHorizontal: scale(5), borderRadius: scale(5), 
-                            backgroundColor: currentIndex === val ? theme.primary.main : theme.neutral[300]}} />
+                        <Pressable onPress={()=> setCurrentIndex(index)} key={index} style={{flex: 1, height: scale(3), marginHorizontal: scale(5), borderRadius: scale(5), 
+                            backgroundColor: currentIndex >= val ? theme.primary.main : theme.neutral[300]}} />
                     ))}
                 </View>
                 <View style={{flex: 11, paddingHorizontal: scale(10)}}>
-                    <SemiBoldText title={currentTitle.title} size={24} color={theme.neutral[900]} lines={5} />
+                    <SemiBoldText title={currentTitle.title} size={28} color={theme.neutral[900]} lines={5} />
                     <View>
                         <RegularText title={currentTitle.description} 
-                        lines={5} size={12} color={theme.neutral[800]} />
+                        lines={5} size={14} color={theme.neutral[800]} />
                     </View>
                     <View style={{marginTop: "auto", paddingVertical: scale(30)}}>
                         <View>

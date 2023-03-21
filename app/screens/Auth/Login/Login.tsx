@@ -12,7 +12,7 @@ const Login = () => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     return (
         <Container>
-            <BoldText title={"Title"} />
+            <BoldText title={"Login"} />
         </Container>
     )
 }

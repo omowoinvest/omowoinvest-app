@@ -11,9 +11,11 @@ const initialState: AppSettings = {
   themeMode: 'light',
   theme: theme.light,
   isLoading: false,
+  loaderTitle: "Please wait...",
   alert: {
     title: 'Alert',
     message: '',
+    mode: "success"
   },
   alertVisible: false,
 }
@@ -31,8 +33,9 @@ export const appSettingSlice = createSlice({
       state.isLoggedIn = !state.isLoggedIn;
     },
     /**toggles application loading state */
-    toggleLoading: (state) => {
+    toggleLoading: (state, action: PayloadAction<string>) => {
       state.isLoading = !state.isLoading;
+      state.loaderTitle = action.payload ?? "Please wait..."; //payload is a string here
     },
 
     /**toggles application wide alert modal with */
@@ -41,6 +44,7 @@ export const appSettingSlice = createSlice({
       if(state.alertVisible) {
         state.alert.title = action.payload.title ?? 'Alert';
         state.alert.message = action.payload.message ?? '';
+        state.alert.mode = action.payload.mode ?? "success"
       } 
     },
     toggleReady: (state) => {

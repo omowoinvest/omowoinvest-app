@@ -57,7 +57,7 @@ export const Button: React.FC<buttonProps> = (props: buttonProps) => {
                         {props.icon}
                     </View>
                 ) : (null)}
-                    <BoldText title={props.title} color = {props.disabled ? theme.light[300] : props.textColor ?? theme.light} size={12} />
+                    <BoldText title={props.title} color = {props.disabled ? theme.light[300] : props.textColor ?? theme.light} size={14} />
                 {props.icon && !props.iconPosition ? (
                     /**default icon style passed in when none is provided as a prop */
                     <View style={props.iconStyle ?? {margin: defaultMargin}}>

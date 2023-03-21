@@ -27,9 +27,9 @@ const HomeTabs = (drawerProps: DrawerScreenProps<any>) => {
 
     return (
         <Tab.Navigator initialRouteName = "Home" screenOptions = {({ route, navigation }: any) => ({
-            headerStyle: {
-                backgroundColor: theme.primary,
-            },
+            // headerStyle: {
+            //     backgroundColor: theme.primary,
+            // },
             tabBarStyle: {
                 // paddingVertical: scale(10),
                 // height: '7%',
