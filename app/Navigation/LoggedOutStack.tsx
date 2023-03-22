@@ -13,6 +13,8 @@ import { RootState } from '../store/store';
 import scale from '../utils/scale';
 import PinSuccess from '../screens/Auth/CreatePin/PinSuccess';
 import Fingerprint from '../screens/Auth/Biometric/Fingerprint';
+import VerifyIndex from '../screens/Auth/VerifyId/VerifyIndex';
+import VerifyId from '../screens/Auth/VerifyId/VerifyId';
 
 const Stack = createStackNavigator();
 const LoggedOutStack = () => {
@@ -57,12 +59,29 @@ const LoggedOutStack = () => {
                     backgroundColor: theme.bg,
                 },
                 headerShadowVisible: false,
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
             }} />
             <Stack.Screen name="PinLogin" component={PinLogin as React.FC} options={{
                 header: ()=> (null),
             }} />
             <Stack.Screen name="Fingerprint" component={Fingerprint as React.FC} options={{
                 header: ()=> (null),
+            }} />
+            <Stack.Screen name="VerifyIndex" component={VerifyIndex as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="VerifyId" component={VerifyId as React.FC} options={{
+                headerTitle: "Verify your identity",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
             }} />
         </Stack.Navigator>
         </>

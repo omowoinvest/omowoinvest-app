@@ -73,7 +73,7 @@ const Onboarding: FC<Screen> = ({navigation}) => {
                 }
                 return 0
             })
-        }, 2000)
+        }, 4000)
         return () => {
             clearInterval(interval)
         }

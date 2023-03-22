@@ -135,35 +135,6 @@ const Input: React.FC<Props> = (props) => {
                 </View>
             ) : null}
         </>
-        // <>
-        //     {props.altLabel ? (
-        //         <View style = {{alignItems: 'flex-end'}}>
-        //                 {props.altLabel}
-        //             </View>
-        //     ) : (null)}
-        // <Pressable onPress = {()=> inputRef.current.focus()}
-        //     style={[styles.defaultItemStyle, {borderColor: focused ? theme.light.secondary : theme.light.dark}]}>
-        //     <View>
-        //         {/* {props.icon ? (
-        //             <View style={[props.iconStyle ? props.iconStyle : {margin: defaultMargin}, styles.iconStyle]}>
-        //                 {props.icon}
-        //             </View>
-        //         ) : (null)} */}
-        //         <View style = {{flexDirection: 'row', position: 'absolute', top: 10}}>
-        //             {props.label ? (
-        //                 <Label title={props.label} style = {{flex: 6}}
-        //                     //  style = {this.state.focused ? styles.focusLabelStyle : this.props.valid ? styles.validLabelStyle : this.props.error ? styles.errorLabelStyle : styles.defaultLabelStyle} 
-        //                     color = {theme.light.dark}
-        //                     />
-        //             ) : (null)}
-        //         </View>
-        //         <TextInput ref={inputRef} onFocus={handleFocus} onBlur={()=> toggleFocus(false)} editable = {!props.disabled} defaultValue ={props.defaultValue} onChangeText={props.onChangeText} onChange={props.onChange} keyboardType={props.keyboardType} secureTextEntry = {props.secure} value={props.value} 
-        //         numberOfLines= {props.numberOfLines ? props.numberOfLines : 1} multiline = {props.multiline ? props.multiline : false} placeholder = {props.placeholder} />
-        //         {/* </Item> */}
-        //         {props.error ? (<SmallText title={props.errorMessage || props.label + " is invalid"} color={theme.light.primary} />) : (null)}
-        //     </View>
-        // </Pressable>
-        // </>
     );
 }
 

@@ -19,7 +19,7 @@ const Verify: FC<Screen> = ({navigation}) => {
     const [timer, setTimer] = useState(90);
     const [enabled, setEnabled] = useState(false);
     const dispatch = useDispatch();
-    let timeOutVal = useRef(0);
+    // let timeOutVal = useRef(0);
     let interval: any;
 
     useEffect(() => {
