@@ -97,10 +97,10 @@ const Verify: FC<Screen> = ({navigation}) => {
                 <View style={{alignItems: "center", marginTop: scale(30)}}>
                     <OtpInput isValid={otp.length === 4 ? true : false} keyboardType='number-pad' value={otp} disabled length = {4} />
                 </View>
-                <View style={{alignItems: "center"}}>
+                <View style={{alignItems: "center", marginTop: scale(-10)}}>
                     <RegularText title="Enter 4-digit code" color={theme.neutral[700]} size={14} />
                 </View>
-                <View style={{marginTop: scale(30)}}>
+                <View style={{marginTop: scale(20)}}>
                     <View style={{flexDirection: "row", borderBottomWidth: 1, borderColor: theme.neutral[500], paddingHorizontal: scale(5), paddingBottom: scale(5)}}>
                         <MaterialCommunityIcons name="email-outline" size={25} color={theme.neutral[600]} style={{marginRight: scale(5)}} />
                         <RegularText title="Resend SMS" size={14} color={theme.neutral[600]} />

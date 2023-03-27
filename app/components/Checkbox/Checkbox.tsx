@@ -32,8 +32,8 @@ const Checkbox: React.FC<Props> = ({checked, mode, onPress, color}) => {
 const styles = StyleSheet.create({
     checkbox: {
         borderWidth: 1.5,
-        height: scale(20),
-        width: scale(20),
+        height: scale(25),
+        width: scale(25),
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: scale(4),

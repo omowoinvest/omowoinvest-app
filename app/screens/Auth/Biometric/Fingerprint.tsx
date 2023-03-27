@@ -1,19 +1,21 @@
 import React, { FC, useRef } from 'react';
 import { View, Image, Pressable } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Container from '../../../components/Container/Container';
 import { RegularText, SemiBoldText } from '../../../components/Typography/Typography';
 import { RootState } from '../../../store/store';
 import scale from '../../../utils/scale';
 import Button from '../../../components/Buttons/Button'
-import { Screen } from '../../../utils/types';
+import { AlertConfig, Screen } from '../../../utils/types';
 import * as LocalAuthentication from 'expo-local-authentication';
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {toggleAlert, toggleLoading}  from '../../../store/appSettings';
 
 const Fingerprint: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const actionSheetRef = useRef<ActionSheetRef>(null);
+    const dispatch = useDispatch();
 
     const verifyFingerPrint = async ()=> {
         const hasHardware = await LocalAuthentication.hasHardwareAsync();
@@ -26,7 +28,19 @@ const Fingerprint: FC<Screen> = ({navigation}) => {
             }
             catch(err) {
                 console.log(err);
+                const alert: AlertConfig = {
+                    message: "Fingerprint not supported",
+                    mode: "error"
+                }
+                dispatch(toggleAlert(alert))
             }
+        }
+        else {
+            const alert: AlertConfig = {
+                message: "Fingerprint not supported",
+                mode: "error"
+            }
+            dispatch(toggleAlert(alert))
         }
     }
 

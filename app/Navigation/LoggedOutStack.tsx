@@ -15,6 +15,10 @@ import PinSuccess from '../screens/Auth/CreatePin/PinSuccess';
 import Fingerprint from '../screens/Auth/Biometric/Fingerprint';
 import VerifyIndex from '../screens/Auth/VerifyId/VerifyIndex';
 import VerifyId from '../screens/Auth/VerifyId/VerifyId';
+import EnterPassword from '../screens/Auth/CreateNewPin/EnterPassword';
+import EnterNewPin from '../screens/Auth/CreateNewPin/EnterNewPin';
+import ConfirmNewPin from '../screens/Auth/CreateNewPin/ConfirmNewPin';
+import PinCreateSuccess from '../screens/Auth/CreateNewPin/PinCreateSuccess';
 
 const Stack = createStackNavigator();
 const LoggedOutStack = () => {
@@ -82,6 +86,43 @@ const LoggedOutStack = () => {
                     paddingLeft: scale(10)
                 },
                 headerShadowVisible: false,
+            }} />
+            {/* recover pin */}
+            <Stack.Screen name="EnterPassword" component={EnterPassword as React.FC} options={{
+                headerTitle: "",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="EnterNewPin" component={EnterNewPin as React.FC} options={{
+                headerTitle: "",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="ConfirmNewPin" component={ConfirmNewPin as React.FC} options={{
+                headerTitle: "",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="PinCreateSuccess" component={PinCreateSuccess as React.FC} options={{
+                header: ()=> (null),
             }} />
         </Stack.Navigator>
         </>

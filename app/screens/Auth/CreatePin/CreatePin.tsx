@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { View, Vibration } from 'react-native'
+import { View, Vibration } from 'react-native';
 import { useSelector } from 'react-redux'
 import Container from '../../../components/Container/Container'
 import CustomKeyboard from '../../../components/CustomKeyboard/CustomKeyboard'

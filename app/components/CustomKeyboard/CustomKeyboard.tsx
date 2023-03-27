@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, Pressable, StyleSheet} from 'react-native'
+import { View, Text, Pressable, StyleSheet} from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { BoldText, MediumText, SemiBoldText } from '../Typography/Typography';
@@ -8,6 +8,8 @@ import { Button } from '../Buttons/Button';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import CONSTANTS from '../../utils/constants';
 import scale from '../../utils/scale';
+import { Image } from 'react-native-animatable';
+import * as LocalAuthentication from 'expo-local-authentication';
 
 interface keyBoardProps {
     /** triggered on button press */
@@ -19,9 +21,11 @@ interface keyBoardProps {
     onPresent?: ()=> void,
     /** disable complete button */
     disableComplete?: boolean,
+    /** enables the use of biometric on keyboard */
+    biometricEnabled?: boolean;
 }
 
-const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBackSpace, onComplete, onPresent, disableComplete}) => {
+const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBackSpace, onComplete, onPresent, disableComplete, biometricEnabled}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const {DEVICE_HEIGHT} = CONSTANTS;
     // const actionSheetRef: any = useRef<ActionSheetRef>(); 
@@ -30,18 +34,31 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
         // actionSheetRef.current.show();
         onPresent ? onPresent() : null
     }, [])
-    // const clearPin = ()=> {
-    //     let newValue = pin;
-    //     newValue = newValue.slice(0, -1);
-    //     setPin(newValue);
-    //     console.log(newValue);
-    //     console.log(pin);
-    // }
+
+    const verifyBiometric = async ()=> {
+        const hasHardware = await LocalAuthentication.hasHardwareAsync();
+        // const authTypes = await LocalAuthentication.supportedAuthenticationTypesAsync()
+        if(hasHardware) {
+            try {
+                const options: LocalAuthentication.LocalAuthenticationOptions = {
+                    promptMessage: "Login with your fingerprint",
+                    cancelLabel: "Cancel",
+                    disableDeviceFallback: true,
+                }
+                const res = await LocalAuthentication.authenticateAsync(options);
+                console.log(res);
+            }
+            catch(err) {
+                console.log(err);
+            }
+        }
+    }
 
     return (
         // <ActionSheet animated={false} ref={actionSheetRef} backgroundInteractionEnabled closable={false} onOpen={onPresent} containerStyle={{backgroundColor: theme.primary[600], borderTopEndRadius: 0, borderTopStartRadius: 0}}>
-            <View style={{height: DEVICE_HEIGHT / 2, paddingVertical: scale(20), paddingHorizontal: scale(10)}}>
-                <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
+            <View>
+            {/* <View style={{flex: 1}}> */}
+                <View style={{flexDirection: 'row', width: '100%', height: scale(70)}}>
                     <View style={{flex: 4, alignItems: 'center'}}>
                         <Pressable onPress={()=> onKeyPress("1")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
                             <SemiBoldText size={32} title="1" color={theme.primary[500]} />
@@ -58,7 +75,7 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
                         </Pressable>
                     </View>
                 </View>
-                <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
+                <View style={{flexDirection: 'row', width: '100%', height: scale(70)}}>
                     <View style={{flex: 4, alignItems: 'center'}}>
                         <Pressable onPress={()=> onKeyPress("4")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
                             <SemiBoldText size={32} title="4" color={theme.primary[500]} />
@@ -75,7 +92,7 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
                         </Pressable>
                     </View>
                 </View>
-                <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
+                <View style={{flexDirection: 'row', width: '100%', height: scale(70)}}>
                     <View style={{flex: 4, alignItems: 'center'}}>
                         <Pressable onPress={()=> onKeyPress("7")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
                             <SemiBoldText size={32} title="7" color={theme.primary[500]} />
@@ -92,11 +109,13 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
                         </Pressable>
                     </View>
                 </View>
-                <View style={{flexDirection: 'row', width: '100%', flex: 2}}>
-                    <View style={{flex: 4, alignItems: 'center', paddingTop: 20}}>
-                        {/* <Pressable onPress={()=> logout()}>
-                            <PrimaryNote title="Logout" color={colors.danger} />
-                        </Pressable> */}
+                <View style={{flexDirection: 'row', width: '100%', height: scale(70)}}>
+                    <View style={{flex: 4, alignItems: "center"}}>
+                        {biometricEnabled ? (
+                            <Pressable onPress={verifyBiometric} style={[styles.fingerprintButton]}>
+                                <Image source={require('../../../assets/img/fingerprint.png')} style={{resizeMode: "contain", flex: 1, alignSelf: "center"}} />
+                            </Pressable>
+                        ) : (null)}
                     </View>
                     <View style={{flex: 4, alignItems: 'center'}}>
                         <Pressable onPress={()=> onKeyPress("0")} style={[styles.button, {borderColor: theme.neutral[400], backgroundColor: theme.light}]}>
@@ -118,6 +137,12 @@ const styles = StyleSheet.create({
     button: {
         borderRadius: scale(30), 
         borderWidth: scale(1.5),
+        alignItems: "center",
+        justifyContent: "center",
+        height: scale(60), 
+        width: scale(60),
+    },
+    fingerprintButton: {
         alignItems: "center",
         justifyContent: "center",
         height: scale(60), 

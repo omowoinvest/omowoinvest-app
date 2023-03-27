@@ -11,7 +11,7 @@ import Button from '../../../components/Buttons/Button';
 const Step1 = ({setStep}: any) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     return (
-        <View style={{marginTop: scale(20)}}>
+        <View style={{marginTop: scale(20), flex: 1}}>
             <ScrollView>
                 <SemiBoldText title="What’s your BVN?" color={theme.neutral[900]} size={24} lines={3} />
                 <View style={{marginTop: scale(20)}}>

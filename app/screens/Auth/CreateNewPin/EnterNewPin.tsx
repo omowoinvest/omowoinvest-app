@@ -1,17 +1,17 @@
 import React, { FC, useState } from 'react';
 import { View, Vibration, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux'
-import Container from '../../../components/Container/Container'
-import CustomKeyboard from '../../../components/CustomKeyboard/CustomKeyboard'
-import OtpInput from '../../../components/Inputs/OtpInput'
-import { RegularText, SemiBoldText } from '../../../components/Typography/Typography'
-import { toggleLoading, toggleAlert } from '../../../store/appSettings'
-import { RootState } from '../../../store/store'
-import scale from '../../../utils/scale'
+import { useSelector } from 'react-redux';
+import Container from '../../../components/Container/Container';
+import CustomKeyboard from '../../../components/CustomKeyboard/CustomKeyboard';
+import OtpInput from '../../../components/Inputs/OtpInput';
+import { RegularText, SemiBoldText } from '../../../components/Typography/Typography';
+import { toggleLoading, toggleAlert } from '../../../store/appSettings';
+import { RootState } from '../../../store/store';
+import scale from '../../../utils/scale';
 import { AlertConfig, Screen } from '../../../utils/types';
 
-const PinLogin: FC<Screen> = ({navigation}) => {
+const EnterNewPin: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const [pin, setPin] = useState('');
     const handleOtp = (value: string)=> {
@@ -22,7 +22,7 @@ const PinLogin: FC<Screen> = ({navigation}) => {
             console.log(newValue);
             setPin(newValue);
             if(newValue.length === 4 ) {
-                
+                navigation.navigate("ConfirmNewPin")
             }
         }
     }
@@ -39,26 +39,18 @@ const PinLogin: FC<Screen> = ({navigation}) => {
     return (
         <Container style={{padding: scale(20)}}>
             <View style={{height: "50%"}}>
-                <View style={{alignItems: "center"}}>
-                    <View style={[styles.avatarContainer, {borderColor: theme.neutral[400]}]}>
-                        <Image source={require("../../../../assets/img/avatar.png")} style={styles.avatar} />
-                    </View>
-                </View>
                 <View style={{alignItems: "center", marginTop: scale(10)}}>
-                    <SemiBoldText title="Welcome back, Adams" color={theme.neutral[900]} 
+                    <SemiBoldText title="Create new PIN" color={theme.neutral[900]} 
                     textAlign="center" lines={3} size={18} />
-                </View>
-                <View style={{alignItems: "center", marginTop: scale(10)}}>
                     <View style={{marginBottom: scale(10)}}>
-                        <RegularText title="Enter PIN" textAlign="center" size={14} color={theme.neutral[700]} lines={3} />
+                        <RegularText title="Input new PIN here so as to easily access your account with us." textAlign="center" size={14} color={theme.neutral[800]} lines={3} />
                     </View>
+                </View>
+                <View style={{alignItems: "center", marginTop: scale(30)}}>
                     <OtpInput isValid={pin.length === 4 ? true : false} keyboardType='number-pad' value={pin} disabled length = {4} />
-                    <TouchableOpacity onPress={()=> navigation.navigate("EnterPassword")}>
-                        <RegularText title="Forgot PIN?" textAlign="center" size={14} color={theme.neutral[700]} lines={3} />
-                    </TouchableOpacity>
                 </View>         
             </View>
-            <CustomKeyboard biometricEnabled buttonTitle="Continue" onKeyPress={(value)=> { Vibration.vibrate(50); handleOtp(value)}} onBackSpace={clearOtp}
+            <CustomKeyboard biometricEnabled={false} onKeyPress={(value)=> { Vibration.vibrate(50); handleOtp(value)}} onBackSpace={clearOtp}
                 onComplete={()=> console.log("Completed")}
             />
         </Container>
@@ -81,4 +73,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PinLogin
+export default EnterNewPin

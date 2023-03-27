@@ -9,6 +9,7 @@ import { RegularText } from '../Typography/Typography';
 
 interface Props {
     onConfirm?: (date: Date)=> void;
+    /** value to display on picker */
     value?: any;
 }
 

@@ -111,7 +111,7 @@ const SelectSheet = (props: Props)=> {
                         {list?.map((item: any, index: number)=> (
                             <TouchableOpacity key={index} onPress = { ()=> props.onSelectItem ? props.onSelectItem(item) : null } 
                             style={[ props.grid ? styles.gridStyle : styles.listStyle, {borderBottomColor: theme.light[400]}]}>
-                                <RegularText size={16} title={props.listTitleKey ? item[props.listTitleKey] : item} color = {theme.dark} textAlign="left"  />
+                                <RegularText size={16} title={props.listTitleKey ? item[props.listTitleKey] : item} color = {theme.neutral[900]} textAlign="left"  />
                             </TouchableOpacity>
                         ))}
                         {list?.length === 0 ? (
@@ -125,7 +125,7 @@ const SelectSheet = (props: Props)=> {
                         {list?.map((item: any, index: number)=> (
                             <TouchableOpacity key={index} onPress = { ()=> props.onSelectItem ? props.onSelectItem(item) : null } 
                             style={[ props.grid ? styles.gridStyle : styles.listStyle, {borderBottomColor: theme.light[400]}]}>
-                                <MediumText size={16} title={props.listTitleKey ? item[props.listTitleKey] : item} color = {theme.dark} textAlign="left"  />
+                                <MediumText size={16} title={props.listTitleKey ? item[props.listTitleKey] : item} color = {theme.neutral[900]} textAlign="left"  />
                             </TouchableOpacity>
                         ))}
                         {list?.length === 0 ? (

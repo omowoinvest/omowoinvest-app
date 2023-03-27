@@ -51,24 +51,26 @@ const Step3 = ({setStep}: any) => {
     }
 
     return (
-        <View style={{marginTop: scale(20)}}>
+        <View style={{marginTop: scale(20), flex: 1}}>
             <SemiBoldText title="Enter 4-digit code" color={theme.neutral[900]} size={24} lines={3} />
             <View>
                 <RegularText title="Please enter the 4-digit code sent to the phone number you opened your bank account with." size={14} color={theme.neutral[900]} lines={5} />
             </View>
-            <View style={{marginTop: scale(50)}}>
+            <View style={{marginTop: scale(40)}}>
                 <View style={{alignItems: "center"}}>
                     <OtpInput isValid={otp.length === 4 ? true : false} keyboardType='number-pad' value={otp} disabled length = {4} />
                 </View>
-                <View style={{alignItems: "center"}}>
+                <View style={{alignItems: "center", marginTop: scale(-10)}}>
                     <BlockText size={14} color={theme.neutral[700]}>
                         Didn’t receive any code? <SemiBoldText title="Resend" size={14} color={theme.neutral[900]} />
                     </BlockText>
                 </View>
             </View>
-            <CustomKeyboard buttonTitle="Continue" onKeyPress={(value)=> { Vibration.vibrate(50); handleOtp(value)}} onBackSpace={clearOtp}
-                onComplete={()=> console.log("Completed")}
-            />
+            <View style={{marginTop: "auto"}}>
+                <CustomKeyboard buttonTitle="Continue" onKeyPress={(value)=> { Vibration.vibrate(50); handleOtp(value)}} onBackSpace={clearOtp}
+                    onComplete={()=> console.log("Completed")}
+                />
+            </View>
             <ActionSheet ref={actionSheetRef} openAnimationConfig={{bounciness: 0}} containerStyle={{padding: scale(20), borderTopRightRadius: scale(20), borderTopLeftRadius: scale(20)}}>
                 <Pressable onPress={hideConfirmation} style={{alignItems: "flex-end"}}>
                     <Ionicons name="close-outline" size={25} color={theme.neutral[700]} />

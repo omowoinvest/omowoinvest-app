@@ -18,6 +18,7 @@ const Register: FC<Screen> = ({navigation}) => {
     const [isChecked, toggleCheck] = useState(false); //handles check button
     const [showLogin, toggleShowLogin] = useState(true); //toggle login button at the bottom of screen
     const [field, setField] = useState("phone"); //set field type for registration
+    const [secure, setSecure] = useState(true);
     useEffect(() => {
         Keyboard.addListener("keyboardDidShow", ()=> {
             toggleShowLogin(false);
@@ -63,7 +64,11 @@ const Register: FC<Screen> = ({navigation}) => {
                     </View>
                 )}
                 <View style={{marginTop: scale(20)}}>
-                    <Input label="Password" icon={<MaterialCommunityIcons name="eye-outline" size={25} color={theme.neutral[500]} />} />
+                    <Input label="Password" icon={
+                            <Pressable onPress={()=> setSecure(!secure)}>
+                                <MaterialCommunityIcons color={theme.neutral[500]} name={secure ? "eye-outline" : "eye-off-outline"} size={scale(25)} />
+                            </Pressable>
+                        } />
                     <View style={{flexDirection: "row"}}>
                         <Checkbox checked={isChecked} mode="light" onPress={()=> toggleCheck(!isChecked)} />
                         <View style={{marginLeft: scale(7)}}>

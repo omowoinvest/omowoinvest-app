@@ -34,8 +34,17 @@ const AlertModal = () => {
               <Pressable style={styles.centeredView} onPress={()=> dispatch(toggleAlert({title: '', message: ''}))}>
                   <View style={[styles.modalView, {backgroundColor: theme.neutral[900]}]}>
                     {alert.mode === "success" ? (
-                      <MaterialCommunityIcons name="check-circle-outline" size={scale(25)} style={{marginRight: scale(10)}} color={theme.primary[300]} />
-                    ) : (null)}
+                      <MaterialCommunityIcons name="check-circle-outline" size={scale(25)} style={{marginRight: scale(10)}} 
+                      color={theme.primary[300]} />
+                    ) : alert.mode === "error" ? (
+                        <MaterialCommunityIcons name="alert" size={scale(25)} style={{marginRight: scale(10)}} 
+                        color={theme.danger.main} />
+                      )
+                      : (
+                        <MaterialCommunityIcons name="alert-circle-outline" size={scale(25)} style={{marginRight: scale(10)}} 
+                        color={theme.primary[300]} />
+                      )
+                    }
                       <MediumText title={alert.message || ''} color={theme.light} size={14} lines={3} />
                       {/* <BoldText size={20} title={alert.title || "Error"} textAlign="left" color={theme.dark} />
                       <RegularText size={14} title={alert.message || ''} lines={10} color={theme.dark} textAlign="center" />
