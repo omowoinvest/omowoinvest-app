@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import { View, Vibration, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Container from '../../../components/Container/Container'
 import CustomKeyboard from '../../../components/CustomKeyboard/CustomKeyboard'
 import OtpInput from '../../../components/Inputs/OtpInput'
 import { RegularText, SemiBoldText } from '../../../components/Typography/Typography'
-import { toggleLoading, toggleAlert } from '../../../store/appSettings'
+import { toggleLoading, toggleAlert, toggleLoggedIn } from '../../../store/appSettings'
 import { RootState } from '../../../store/store'
 import scale from '../../../utils/scale'
 import { AlertConfig, Screen } from '../../../utils/types';
@@ -14,6 +14,7 @@ import { AlertConfig, Screen } from '../../../utils/types';
 const PinLogin: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const [pin, setPin] = useState('');
+    const dispatch = useDispatch();
     const handleOtp = (value: string)=> {
         console.log(pin);
         let newValue = pin;
@@ -22,7 +23,7 @@ const PinLogin: FC<Screen> = ({navigation}) => {
             console.log(newValue);
             setPin(newValue);
             if(newValue.length === 4 ) {
-                
+                dispatch(toggleLoggedIn());
             }
         }
     }
@@ -58,8 +59,8 @@ const PinLogin: FC<Screen> = ({navigation}) => {
                     </TouchableOpacity>
                 </View>         
             </View>
-            <CustomKeyboard biometricEnabled buttonTitle="Continue" onKeyPress={(value)=> { Vibration.vibrate(50); handleOtp(value)}} onBackSpace={clearOtp}
-                onComplete={()=> console.log("Completed")}
+            <CustomKeyboard biometricEnabled buttonTitle="Continue" onKeyPress={(value)=> { Vibration.vibrate(50); handleOtp(value)}} onBackSpace={clearOtp} biometricAction={()=> dispatch(toggleLoggedIn())}
+                // onComplete={()=> dispatch(toggleLoggedIn())}
             />
         </Container>
     )

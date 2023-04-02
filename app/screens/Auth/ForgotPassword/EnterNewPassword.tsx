@@ -13,23 +13,9 @@ import { errorHandler, successHandler, validateEmail, validatePhone } from '../.
 import Checkbox from '../../../components/Checkbox/Checkbox';
 import Button from '../../../components/Buttons/Button';
 
-const EnterPassword: FC<Screen> = ({navigation}) => {
+const EnterNewPassword: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
-    const [showLogin, toggleShowLogin] = useState(true); //toggle login button at the bottom of screen
-    const [field, setField] = useState("phone"); //set field type for registration
     const [secure, setSecure] = useState(true);
-    useEffect(() => {
-        Keyboard.addListener("keyboardDidShow", ()=> {
-            toggleShowLogin(false);
-        })
-        Keyboard.addListener("keyboardDidHide", ()=> {
-            toggleShowLogin(true);
-        })
-        return () => {
-            Keyboard.removeAllListeners("keyboardDidShow");
-            Keyboard.removeAllListeners("keyboardDidlHide");
-        }
-    }, [])
 
     const nav = (route: string)=> {
         navigation.navigate(route);
@@ -38,11 +24,11 @@ const EnterPassword: FC<Screen> = ({navigation}) => {
     return (
         <Container>
             <ScrollView contentContainerStyle={{padding: scale(20), paddingBottom: scale(40)}}>
-                <View style={{alignItems: "center"}}>
-                    <SemiBoldText title="Create new PIN" color={theme.neutral[900]} 
-                    textAlign="center" lines={3} size={18} />
+                <View style={{alignItems: "flex-start"}}>
+                    <SemiBoldText title="Create new password" color={theme.neutral[900]} lines={3} size={18} />
                     <View>
-                        <RegularText title="Enter your password to create a new PIN." textAlign="center" size={14} color={theme.neutral[800]} lines={3} />
+                        <RegularText title="Enter your new password to access your new account with us." textAlign="left" 
+                        size={14} color={theme.neutral[800]} lines={3} />
                     </View>
                 </View>
                 <View style={{marginTop: scale(20)}}>
@@ -54,12 +40,7 @@ const EnterPassword: FC<Screen> = ({navigation}) => {
                         }  />
                 </View>
                 <View style={{marginTop: scale(10)}}>
-                    <Button title="Proceed" color={theme.primary.main} onPress={()=> nav("EnterNewPin")} />
-                </View>
-                <View style={{flexDirection: "row", marginTop: scale(10)}}>
-                    <Pressable onPress={()=> nav('ForgotPassword')}>
-                        <SemiBoldText title="Forgot password?" size={12} color={theme.neutral[700]} />
-                    </Pressable>
+                    <Button title="Create new password" color={theme.primary.main} onPress={()=> nav("PasswordSuccess")} />
                 </View>
             </ScrollView>
         </Container>
@@ -74,4 +55,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default EnterPassword
+export default EnterNewPassword

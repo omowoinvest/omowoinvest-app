@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import CustomLoader from './app/components/CustomLoader/CustomLoader';
 import AlertModal from './app/components/Modals/AlertModal';
 import { useFonts } from 'expo-font';
+import { enableScreens, enableFreeze } from 'react-native-screens';
+enableScreens(true);
+enableFreeze(true); //prevents unnecessary re-rendering
 
 export default function App() {
   const isDarkMode = useColorScheme() === 'dark';

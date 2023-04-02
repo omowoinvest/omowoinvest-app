@@ -23,9 +23,20 @@ interface keyBoardProps {
     disableComplete?: boolean,
     /** enables the use of biometric on keyboard */
     biometricEnabled?: boolean;
+    /**function to call after successful iometric auth */
+    biometricAction?: ()=> void,
 }
 
-const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBackSpace, onComplete, onPresent, disableComplete, biometricEnabled}) => {
+const CustomKeyboard : React.FC<keyBoardProps> = ({
+    onKeyPress, 
+    buttonTitle, 
+    onBackSpace, 
+    onComplete, 
+    onPresent, 
+    disableComplete, 
+    biometricEnabled,
+    biometricAction,
+    }) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const {DEVICE_HEIGHT} = CONSTANTS;
     // const actionSheetRef: any = useRef<ActionSheetRef>(); 
@@ -47,6 +58,7 @@ const CustomKeyboard : React.FC<keyBoardProps> = ({onKeyPress, buttonTitle, onBa
                 }
                 const res = await LocalAuthentication.authenticateAsync(options);
                 console.log(res);
+                biometricAction ? biometricAction() : null
             }
             catch(err) {
                 console.log(err);

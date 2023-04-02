@@ -19,6 +19,10 @@ import EnterPassword from '../screens/Auth/CreateNewPin/EnterPassword';
 import EnterNewPin from '../screens/Auth/CreateNewPin/EnterNewPin';
 import ConfirmNewPin from '../screens/Auth/CreateNewPin/ConfirmNewPin';
 import PinCreateSuccess from '../screens/Auth/CreateNewPin/PinCreateSuccess';
+import ForgotPassword from '../screens/Auth/ForgotPassword/ForgotPassword';
+import EnterPasswordOtp from '../screens/Auth/ForgotPassword/EnterPasswordOtp';
+import EnterNewPassword from '../screens/Auth/ForgotPassword/EnterNewPassword';
+import PasswordSuccess from '../screens/Auth/ForgotPassword/PasswordSuccess';
 
 const Stack = createStackNavigator();
 const LoggedOutStack = () => {
@@ -122,6 +126,42 @@ const LoggedOutStack = () => {
                 headerShadowVisible: false,
             }} />
             <Stack.Screen name="PinCreateSuccess" component={PinCreateSuccess as React.FC} options={{
+                header: ()=> (null),
+            }} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPassword as React.FC} options={{
+                headerTitle: "",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="EnterPasswordOtp" component={EnterPasswordOtp as React.FC} options={{
+                headerTitle: "",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="EnterNewPassword" component={EnterNewPassword as React.FC} options={{
+                headerTitle: "",
+                headerTitleAlign: "center",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(10)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="PasswordSuccess" component={PasswordSuccess as React.FC} options={{
                 header: ()=> (null),
             }} />
         </Stack.Navigator>

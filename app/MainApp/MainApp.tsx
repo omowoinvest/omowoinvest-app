@@ -69,7 +69,8 @@ const MainApp: React.FC<Props> = props => {
                     <>
                         {isLoggedIn ? (
                             <NavigationContainer>
-                                <BottomTabs.Navigator initialRouteName="LoggedInStack"
+                                <LoggedInStack />
+                                {/* <BottomTabs.Navigator initialRouteName="LoggedInStack"
                                     screenOptions={{
                                         title: '',
                                         headerTitleAlign: 'left',
@@ -78,7 +79,7 @@ const MainApp: React.FC<Props> = props => {
                                     }} 
                                 >
                                     <BottomTabs.Screen name="LoggedInStack" component={LoggedInStack} />
-                                </BottomTabs.Navigator>
+                                </BottomTabs.Navigator> */}
                                 {/* <LoggedInStack /> */}
                             </NavigationContainer>
                             ) : ( 

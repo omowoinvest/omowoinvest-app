@@ -13,7 +13,7 @@ import { errorHandler, successHandler, validateEmail, validatePhone } from '../.
 import Checkbox from '../../../components/Checkbox/Checkbox';
 import Button from '../../../components/Buttons/Button';
 
-const EnterPassword: FC<Screen> = ({navigation}) => {
+const ForgotPassword: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const [showLogin, toggleShowLogin] = useState(true); //toggle login button at the bottom of screen
     const [field, setField] = useState("phone"); //set field type for registration
@@ -38,28 +38,18 @@ const EnterPassword: FC<Screen> = ({navigation}) => {
     return (
         <Container>
             <ScrollView contentContainerStyle={{padding: scale(20), paddingBottom: scale(40)}}>
-                <View style={{alignItems: "center"}}>
-                    <SemiBoldText title="Create new PIN" color={theme.neutral[900]} 
-                    textAlign="center" lines={3} size={18} />
+                <View style={{alignItems: "flex-start"}}>
+                    <SemiBoldText title="Create new password" color={theme.neutral[900]} lines={3} size={18} />
                     <View>
-                        <RegularText title="Enter your password to create a new PIN." textAlign="center" size={14} color={theme.neutral[800]} lines={3} />
+                        <RegularText title="Enter your email address and we will send you a code to create a new password." textAlign="left" 
+                        size={14} color={theme.neutral[800]} lines={3} />
                     </View>
                 </View>
                 <View style={{marginTop: scale(20)}}>
-                    <Input label="Password" secure={secure}
-                        icon={
-                            <Pressable onPress={()=> setSecure(!secure)}>
-                                <MaterialCommunityIcons color={theme.neutral[500]} name={secure ? "eye-outline" : "eye-off-outline"} size={scale(25)} />
-                            </Pressable>
-                        }  />
+                    <Input label="Email" keyboardType="email-address" />
                 </View>
                 <View style={{marginTop: scale(10)}}>
-                    <Button title="Proceed" color={theme.primary.main} onPress={()=> nav("EnterNewPin")} />
-                </View>
-                <View style={{flexDirection: "row", marginTop: scale(10)}}>
-                    <Pressable onPress={()=> nav('ForgotPassword')}>
-                        <SemiBoldText title="Forgot password?" size={12} color={theme.neutral[700]} />
-                    </Pressable>
+                    <Button title="Proceed" color={theme.primary.main} onPress={()=> nav("EnterPasswordOtp")} />
                 </View>
             </ScrollView>
         </Container>
@@ -74,4 +64,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default EnterPassword
+export default ForgotPassword

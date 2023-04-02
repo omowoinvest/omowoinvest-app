@@ -15,6 +15,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { BoldText } from '../../components/Typography/Typography';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import {HomeActive, HomeInactive, PlansActive, PlansInactive, WalletActive, WalletInactive, ChatActive, ChatInactive, MoreActive, MoreInactive } from './Icons'; 
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +33,7 @@ const HomeTabs = (drawerProps: DrawerScreenProps<any>) => {
             // },
             tabBarStyle: {
                 // paddingVertical: scale(10),
-                // height: '7%',
+                height: '7%',
                 backgroundColor: theme.light,
                 // justifyContent: 'center'
             },
@@ -47,29 +48,30 @@ const HomeTabs = (drawerProps: DrawerScreenProps<any>) => {
                 // console.log(focused);
                 // console.log(route);
                 if (route.name === 'Home') {
-                    size = focused ? scale(20) : scale(20);
+                    size = focused ? scale(30) : scale(30);
                     color = focused ? theme.primary.main : theme.neutral.main;
-                    IconComponent = <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />; 
+                    // IconComponent = <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />; 
+                    IconComponent = focused ? <HomeActive height={size} width={size} /> : <HomeInactive height={size} width={size} /> ; 
                 } 
                 else if (route.name === 'Plans') {
-                    size = focused ? scale(20) : scale(20);
+                    size = focused ? scale(30) : scale(30);
                     color = focused ? theme.primary.main : theme.neutral.main;
-                    IconComponent = <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />;
+                    IconComponent = focused ? <PlansActive height={size} width={size} /> : <PlansInactive height={size} width={size} /> ; 
                 }
                 else if (route.name === 'Wallet') {
-                    size = focused ? scale(20) : scale(20);
+                    size = focused ? scale(30) : scale(30);
                     color = focused ? theme.primary.main : theme.neutral.main;
-                    IconComponent = <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />;
+                    IconComponent = focused ? <WalletActive height={size} width={size} /> : <WalletInactive height={size} width={size} /> ; 
                 }
                 else if (route.name === 'Chat') {
-                    size = focused ? scale(20) : scale(20);
+                    size = focused ? scale(30) : scale(30);
                     color = focused ? theme.primary.main : theme.neutral.main;
-                    IconComponent = <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />;
+                    IconComponent = focused ? <ChatActive height={size} width={size} /> : <ChatInactive height={size} width={size} /> ; 
                 }
                 else if (route.name === 'More') {
-                    size = focused ? scale(20) : scale(20);
+                    size = focused ? scale(30) : scale(30);
                     color = focused ? theme.primary.main : theme.neutral.main;
-                    IconComponent = <MaterialCommunityIcons name="home-variant-outline" size={size} color={color} />;
+                    IconComponent = focused ? <MoreActive height={size} width={size} /> : <MoreInactive height={size} width={size} /> ; 
                 }
     
                 // You can return any component that you like here!
@@ -122,14 +124,6 @@ const HomeTabs = (drawerProps: DrawerScreenProps<any>) => {
                 // headerLeftContainerStyle: {
                 //     paddingLeft: 20
                 // },
-                headerShadowVisible: false,
-            })} />
-            <Tab.Screen name="Wallet" component={Wallet} options = {({navigation})=> ({
-                // title: 'More',
-                headerLeftContainerStyle: {
-                    paddingHorizontal: 20
-                },
-                headerTitle: '',
                 headerShadowVisible: false,
             })} />
             <Tab.Screen name="Chat" component={Chat as FC} options = {({navigation})=> ({
