@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import scale from '../../utils/scale';
 // import {colors} from '../../Styles/Styles';
 // import CONSTANTS from '../../utils/constants';
 
@@ -49,18 +50,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10,
         margin: defaultMargin,
-        borderRadius: 10
+        height: scale(36),
+        width: scale(36),
+        borderRadius: scale(18),
+        alignItems: "center",
+
     },
     defaultIconParentStyle: {
         backgroundColor: 'transparent'
     },
     badge: {
-        height: 10,
-        width: 10,
-        borderRadius: 5,
+        height: scale(7),
+        width: scale(7),
+        borderRadius: scale(3.5),
         position: 'absolute',
-        left: '65%',
-        top: -5
+        left: '60%',
+        // bottom: 
+        top: 5
     }
 });
 

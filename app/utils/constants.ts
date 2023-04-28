@@ -25,6 +25,7 @@ const theme: Theme = {
   light: {
     primary: {
       main: "#0694C0",
+      50: "rgba(214, 244, 253, 0.5)",
       100: "#D6F4FD",
       200: "#8CE0F8",
       300: "#40C9F4",
@@ -90,6 +91,7 @@ const theme: Theme = {
   dark: {
     primary: {
       main: "#3F63F6",
+      50: "rgba(214, 244, 253, 0.5)",
       100: "#D8E3FE",
       200: "#B2C6FE",
       300: "#8BA6FC",
