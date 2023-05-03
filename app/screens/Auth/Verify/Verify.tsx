@@ -80,7 +80,7 @@ const Verify: FC<Screen> = ({navigation}) => {
         console.log(otp);
     }
     return (
-        <Container style={{padding: scale(20)}}>
+        <Container style={{padding: scale(16)}}>
             <View style={{height: DEVICE_HEIGHT / 2}}>
                 <View style={{alignItems: "center", marginTop: scale(10)}}>
                     <SemiBoldText title="Verifying your number" color={theme.neutral[900]} size={20} />

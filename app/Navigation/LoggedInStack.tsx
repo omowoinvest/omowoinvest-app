@@ -12,6 +12,8 @@ import CONSTANTS from '../utils/constants';
 import CreateProfile from '../screens/CreateProfile/CreateProfile';
 import NumberOfKids from '../screens/CreateProfile/NumberOfKids';
 import SelectSerial from '../screens/CreateProfile/SelectSerial';
+import Investment from '../screens/Investment/Investment';
+import ViewInvestmentPlan from '../screens/Investment/ViewInvestmentPlan';
 
 const Stack = createStackNavigator();
 // const LoggedInStack = (stackProps: StackScreenProps<any>) => {
@@ -35,6 +37,9 @@ const LoggedInStack = () => {
                 fontFamily: "Inter-SemiBold",
                 // fontSize: scale(24)
             },
+            headerLeftContainerStyle: {
+                // paddingLeft: scale(10),
+            }
             })}
         >
             {/* available screens for logged in users */}
@@ -63,14 +68,36 @@ const LoggedInStack = () => {
                 },
                 headerShadowVisible: false,
             }} />
-            <Stack.Screen name="SelectSerial" component={SelectSerial as React.FC} options={{
+            <Stack.Screen name="SelectSerial" component={SelectSerial as React.FC} 
+                options={{
+                    headerTitle: "",
+                    headerTitleAlign: "center",
+                    headerStyle: {
+                        backgroundColor: theme.bg,
+                    },
+                    headerLeftContainerStyle: {
+                        paddingLeft: scale(10)
+                    },
+                    headerShadowVisible: false,
+                }} 
+            />
+            <Stack.Screen name="Investment" component={Investment as React.FC} options={{
                 headerTitle: "",
-                headerTitleAlign: "center",
                 headerStyle: {
                     backgroundColor: theme.bg,
                 },
                 headerLeftContainerStyle: {
-                    paddingLeft: scale(10)
+                    paddingLeft: scale(5)
+                },
+                headerShadowVisible: false,
+            }} />
+            <Stack.Screen name="ViewInvestment" component={ViewInvestmentPlan as React.FC} options={{
+                headerTitle: "",
+                headerStyle: {
+                    backgroundColor: theme.bg,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: scale(5)
                 },
                 headerShadowVisible: false,
             }} />

@@ -12,7 +12,7 @@ import { Screen } from '../../../utils/types';
 const PinSuccess: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     return (
-        <Container style={{paddingHorizontal: scale(20)}}>
+        <Container style={{paddingHorizontal: scale(16)}}>
             <View style={{flex: 8, justifyContent: "center", alignItems: "center"}}>
                 <Image source={require('../../../../assets/img/pin-success.png')} style={{height: scale(110), width: scale(110), resizeMode: "contain"}} />
                 <View style={{marginTop: scale(20)}}>

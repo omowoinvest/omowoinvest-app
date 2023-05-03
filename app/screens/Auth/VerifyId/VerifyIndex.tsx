@@ -27,7 +27,7 @@ const VerifyIndex: FC<Screen> = ({navigation}) => {
     }
 
     return (
-        <Container style={{padding: scale(20)}}>
+        <Container style={{padding: scale(16)}}>
             <View style={{flex: 8, justifyContent: "center", alignItems: "center"}}>
                 <Image source={require('../../../../assets/img/identity.png')} style={{height: scale(110), width: scale(110), resizeMode: "contain"}} />
                 <View style={{marginTop: scale(20)}}>

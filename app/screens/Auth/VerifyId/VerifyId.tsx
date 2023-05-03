@@ -26,7 +26,7 @@ const VerifyId: FC<Screen> = () => {
     ]
 
     return (
-        <Container style={{paddingHorizontal: scale(20)}}>
+        <Container style={{paddingHorizontal: scale(16)}}>
             <View>
                 <MediumText title={`Step ${step} of 3`} size={12} color={theme.neutral[900]} />
                 <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>

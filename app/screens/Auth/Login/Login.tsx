@@ -38,7 +38,7 @@ const Login: FC<Screen> = ({navigation}) => {
 
     return (
         <Container>
-            <ScrollView contentContainerStyle={{padding: scale(20), paddingBottom: scale(40)}}>
+            <ScrollView contentContainerStyle={{padding: scale(16), paddingBottom: scale(40)}}>
                 <View style={{alignItems: "center"}}>
                     <Image source={require("../../../../assets/img/logo.png")} style={styles.logo} />
                 </View>

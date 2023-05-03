@@ -16,7 +16,7 @@ import ChevronRight from '../../../assets/icons/chevron-right.svg';
 const Home: FC<Screen> = ({navigation}) => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     return (
-        <Container style={{paddingTop: scale(15), paddingHorizontal: scale(15)}}>
+        <Container style={{paddingTop: scale(15), paddingHorizontal: scale(16)}}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.title}>
                     <View>
@@ -59,7 +59,9 @@ const Home: FC<Screen> = ({navigation}) => {
                     </Pressable>
                 </View>
                 <View style={{marginTop: scale(20)}}>
-                    <Pressable style={[{borderColor: theme.neutral[200], backgroundColor: theme.light}, styles.listItem]}>
+                    <Pressable style={[{borderColor: theme.neutral[200], backgroundColor: theme.light}, styles.listItem]}
+                        onPress={()=> navigation.navigate("Investment")}
+                    >
                         <View style={[styles.listIconBox, {backgroundColor: theme.primary.main}]}>
                             <Image source={require('../../../assets/img/tree.png')} style={{width: scale(43), height: scale(48)}} />
                         </View>

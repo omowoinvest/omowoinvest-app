@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import { StyleSheet, Text } from 'react-native';
 import scale from '../../utils/scale';
 import { useSelector } from 'react-redux'
@@ -15,6 +15,7 @@ interface textProps {
     textAlign?: "auto" | "left" | "right" | "center" | "justify",
     /** font size */
     size?: 10 | 12 | 14 | 16 | 18 | 20 | 24 | 28 | 32 | 48,
+    transform?: "uppercase" | "lowercase" | "capitalize" | "none",
 }
 
 // type definition for block text
@@ -34,29 +35,49 @@ interface blockTextProps {
 export const BoldText: FC<textProps> = props => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const title = props.title;
+    const [lines, setLines] = useState(1);
+    const handleTextLayout = (event: any)=> {
+        setLines(event.nativeEvent.lines.length);
+    }
     return (
-        <Text style={[styles.boldStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : 1}>{title}</Text>
+        <Text style={[styles.boldStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : lines}
+        onTextLayout={handleTextLayout}>{title}</Text>
     );
 };
 export const SemiBoldText: FC<textProps> = props => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const title = props.title;
+    const [lines, setLines] = useState(1);
+    const handleTextLayout = (event: any)=> {
+        setLines(event.nativeEvent.lines.length);
+    }
     return (
-        <Text style={[styles.semiBoldStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : 1}>{title}</Text>
+        <Text style={[styles.semiBoldStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : lines}
+        onTextLayout={handleTextLayout}>{title}</Text>
     );
 };
 export const MediumText: FC<textProps> = props => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const title = props.title;
+    const [lines, setLines] = useState(1);
+    const handleTextLayout = (event: any)=> {
+        setLines(event.nativeEvent.lines.length);
+    }
     return (
-        <Text style={[styles.mediumStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : 1}>{title}</Text>
+        <Text style={[styles.mediumStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16), textTransform: props.transform ?? "none"}]} numberOfLines= {props.lines ? props.lines : lines}
+        onTextLayout={handleTextLayout}>{title}</Text>
     );
 };
 export const RegularText: FC<textProps> = props => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     const title = props.title;
+    const [lines, setLines] = useState(1);
+    const handleTextLayout = (event: any)=> {
+        setLines(event.nativeEvent.lines.length);
+    }
     return (
-        <Text style={[styles.regularStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : 1}>{title}</Text>
+        <Text style={[styles.regularStyle, {color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16)}]} numberOfLines= {props.lines ? props.lines : lines}
+        onTextLayout={handleTextLayout}>{title}</Text>
     );
 };
 
@@ -64,8 +85,16 @@ export const RegularText: FC<textProps> = props => {
 export const BlockText: FC<blockTextProps> = props => {
     const {theme} = useSelector((state: RootState) => state.appSetting);
     // const title = props.title;
+    const [lines, setLines] = useState(1);
+    const handleTextLayout = (event: any)=> {
+        setLines(event.nativeEvent.lines.length);
+    }
     return (
-        <Text style={[{color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16), fontFamily: props.fontFamily ?? "Inter-Regular"}]} numberOfLines= {props.lines ? props.lines : 1}>{props.children}</Text>
+        <Text style={[{color: props.color ? props.color : theme.primary.main, textAlign: props.textAlign, fontSize: props.size ? scale(props.size) : scale(16), fontFamily: props.fontFamily ?? "Inter-Regular"}]} numberOfLines= {props.lines ? props.lines : lines}
+        onTextLayout={handleTextLayout}
+        >
+            {props.children}
+        </Text>
     );
 };
 

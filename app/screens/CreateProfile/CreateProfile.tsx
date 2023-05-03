@@ -15,7 +15,7 @@ const CreateProfile: FC<Screen> = ({navigation}) => {
         navigation.navigate(route);
     }
     return (
-        <Container style={{paddingHorizontal: scale(20)}}>
+        <Container style={{paddingHorizontal: scale(16)}}>
             <StatusBar backgroundColor={theme.light} barStyle="dark-content" />
             <View style={{flex: 2}}>
                 <SemiBoldText title="Let’s create your kids’ profiles" size={24} color={theme.neutral[900]} lines={10} />

@@ -42,7 +42,7 @@ const CreatePin: FC<Screen> = ({navigation}) => {
     }
 
     return (
-        <Container style={{padding: scale(20)}}>
+        <Container style={{padding: scale(16)}}>
             <View style={{height: "50%"}}>
                 <View style={{alignItems: "center"}}>
                     <SemiBoldText title={mode === "create" ? "Create PIN" : "Confirm PIN"} color={theme.neutral[900]} size={20} />

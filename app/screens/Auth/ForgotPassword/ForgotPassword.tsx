@@ -37,7 +37,7 @@ const ForgotPassword: FC<Screen> = ({navigation}) => {
 
     return (
         <Container>
-            <ScrollView contentContainerStyle={{padding: scale(20), paddingBottom: scale(40)}}>
+            <ScrollView contentContainerStyle={{padding: scale(16), paddingBottom: scale(40)}}>
                 <View style={{alignItems: "flex-start"}}>
                     <SemiBoldText title="Create new password" color={theme.neutral[900]} lines={3} size={18} />
                     <View>

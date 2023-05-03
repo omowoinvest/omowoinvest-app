@@ -53,7 +53,7 @@ const Fingerprint: FC<Screen> = ({navigation}) => {
     }
 
     return (
-        <Container style={{paddingHorizontal: scale(20)}}>
+        <Container style={{paddingHorizontal: scale(16)}}>
             <View style={{flex: 8, justifyContent: "center", alignItems: "center"}}>
                 <Image source={require('../../../../assets/img/fingerprint.png')} style={{height: scale(110), width: scale(110), resizeMode: "contain"}} />
                 <View style={{marginTop: scale(20)}}>
